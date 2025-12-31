@@ -10,6 +10,8 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
+      - name: "print event types"
+        run: echo "event type is= ${{github.event_name}}"
       - name: "greet to world"
         run: echo "Hello world"
       - name: "print current time"
