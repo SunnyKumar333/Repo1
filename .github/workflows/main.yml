@@ -1,13 +1,22 @@
 name: "hello world workflow/pipeline"
 
 on:
+  pull_request:
   push:
   schedule:
       - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
+  on-workflow-dispatch:
+    if: ${{github.event_name}}=="workflow_dispatch"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "print event types"
+        run: echo "event type is= ${{github.event_name}}"
+    
   hello_world:
+    if: ${{github.event_name}}=="push"
     runs-on: ubuntu-latest
     steps:
       - name: "print event types"
@@ -16,3 +25,9 @@ jobs:
         run: echo "Hello world"
       - name: "print current time"
         run: echo "current time is $(date)"
+  on-pull-request:
+    if: ${{github.event_name}}=="pull_request"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "echo event"
+        run: echo "event type is= ${{github.event_name}}"
