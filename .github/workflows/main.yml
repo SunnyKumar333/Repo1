@@ -1,6 +1,8 @@
 name: "hello world workflow/pipeline"
 
 on:
+  schedule:
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
@@ -9,3 +11,5 @@ jobs:
     steps:
       - name: "greet to world"
         run: echo "Hello world"
+      - name: "print current time"
+        run: echo "current time is $(date)"
