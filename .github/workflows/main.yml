@@ -1,8 +1,9 @@
 name: "hello world workflow/pipeline"
 
 on:
+  push:
   schedule:
-    - cron: '35 * * * *'
+      - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
